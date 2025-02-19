@@ -77,7 +77,7 @@ const processCompanies = async (domain, hubId, q) => {
 
   let hasMore = true;
   const offsetObject = {};
-  const limit = 5;
+  const limit = 100;
 
   while (hasMore) {
     const lastModifiedDate = offsetObject.lastModifiedDate || lastPulledDate;
@@ -181,7 +181,7 @@ const processContacts = async (domain, hubId, q) => {
 
   let hasMore = true;
   const offsetObject = {};
-  const limit = 5;
+  const limit = 100;
 
   while (hasMore) {
     const lastModifiedDate = offsetObject.lastModifiedDate || lastPulledDate;
@@ -493,7 +493,7 @@ const pullDataFromHubspot = async () => {
     const actions = [];
     const q = createQueue(domain, actions);
 
-    /* try {
+    try {
       await processContacts(domain, account.hubId, q);
       console.log("process contacts");
     } catch (err) {
@@ -511,7 +511,7 @@ const pullDataFromHubspot = async () => {
         apiKey: domain.apiKey,
         metadata: { operation: "processCompanies", hubId: account.hubId },
       });
-    } */
+    }
 
     try {
       await processMeetings(domain, account.hubId, q);
